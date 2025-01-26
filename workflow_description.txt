@@ -1,0 +1,116 @@
+HPV Classification System Workflow
+
+1. DATA LOADING PHASE
+-------------------
+1.1 Image Data Loading
+    - Source: Two folders (positive_folder and negative_folder)
+    - Path: "D:\categorization\new\hpv\positive" and "D:\categorization\new\hpv\negative"
+    - Process:
+        * Load each image using tf.keras.utils.load_img
+        * Resize to (224, 224) dimensions
+        * Normalize pixel values (divide by 255.0)
+        * Assign labels (1 for positive, 0 for negative)
+        * Store filenames for tracking
+
+1.2 Metadata Loading
+    - Source: Excel file
+    - Path: "D:\categorization\IARCImageBankColpo\Cases Meta data.xlsx"
+    - Process:
+        * Load Excel with header at row 1
+        * Identify CaseID and HPV status columns
+        * Convert HPV status to binary (positive=1, negative=0)
+
+2. PREPROCESSING PHASE
+--------------------
+2.1 Image Preprocessing
+    - Resize all images to (224, 224)
+    - Normalize pixel values to range [0,1]
+    - Convert to numpy arrays
+    - Store in all_images array
+
+2.2 Metadata Preprocessing
+    - Clean and standardize column names
+    - Handle missing values
+    - Convert categorical variables
+    - Align with image data using CaseIDs
+
+2.3 Data Alignment
+    - Match images with corresponding metadata
+    - Ensure consistent ordering
+    - Split into training, validation, and test sets
+
+3. MODEL ARCHITECTURE
+-------------------
+3.1 Image Processing Branch
+    - Base: EfficientNetB0
+    - Configuration:
+        * Input shape: (224, 224, 3)
+        * Weights: ImageNet
+        * Include_top: False
+        * Last 20 layers trainable
+
+3.2 Metadata Processing Branch
+    - Dense layers for metadata processing
+    - Input shape based on metadata features
+    - Dropout for regularization
+
+3.3 Combined Architecture
+    - Concatenate image and metadata features
+    - Additional dense layers
+    - Final sigmoid activation for binary classification
+
+4. TRAINING PROCESS
+-----------------
+4.1 Hyperparameter Tuning
+    - Learning rates: [1e-3, 1e-4, 1e-5]
+    - Batch sizes: [16, 32, 64]
+    - Dropout rates: [0.2, 0.3, 0.5]
+
+4.2 Training Configuration
+    - Loss: Binary crossentropy
+    - Metrics: Accuracy, Precision, Recall, AUC
+    - Callbacks:
+        * Early stopping
+        * Learning rate reduction
+        * Model checkpointing
+
+4.3 Class Balance Handling
+    - Compute class weights
+    - Apply balanced weighting during training
+
+5. EVALUATION & VISUALIZATION
+--------------------------
+5.1 Performance Metrics
+    - Accuracy
+    - Precision
+    - Recall
+    - AUC-ROC
+
+5.2 Visualization Components
+    - Sample images display (positive/negative)
+    - HPV status distribution
+    - Age distribution
+    - Numerical features distribution
+    - Categorical data distribution
+    - Correlation heatmap
+    - Training progress plots
+
+5.3 Model Interpretability
+    - Grad-CAM visualization
+    - Feature importance analysis
+
+6. DATA FLOW
+-----------
+Raw Data → Preprocessing → Model Training → Evaluation → Visualization
+Images ────┐
+          ├→ Combined Features → Model → Predictions
+Metadata ──┘
+
+7. SAVE POINTS
+------------
+- Best hyperparameters saved to JSON
+- Model checkpoints during training
+- Visualization outputs
+- Performance metrics logs
+
+This workflow represents a comprehensive machine learning pipeline combining image and metadata analysis for HPV classification, with emphasis on data preprocessing, model architecture, and evaluation metrics. 
