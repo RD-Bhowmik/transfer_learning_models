@@ -14,6 +14,63 @@ xlsx_file_path = "D:\\categorization\\IARCImageBankColpo\\Cases Meta data.xlsx"
 # Parameters
 image_size = (224, 224)  # Resize dimensions
 
+def visualize_normalization(original_image, normalized_image):
+    """Visualize original and normalized images side by side with detailed changes."""
+    fig = plt.figure(figsize=(15, 8))
+    
+    # Original Image and its details
+    plt.subplot(2, 2, 1)
+    plt.imshow(original_image.astype('uint8'))
+    plt.title('Original Image\n(Pixel values: 0-255)')
+    plt.axis('off')
+    
+    # Add text box with original image statistics
+    stats_orig = f'Min: {original_image.min():.1f}\nMax: {original_image.max():.1f}\nMean: {original_image.mean():.1f}\nStd: {original_image.std():.1f}'
+    plt.text(1.1, 0.5, stats_orig, transform=plt.gca().transAxes, bbox=dict(facecolor='white', alpha=0.8))
+    
+    # Normalized Image and its details
+    plt.subplot(2, 2, 2)
+    plt.imshow(normalized_image)
+    plt.title('Normalized Image\n(Pixel values: 0-1)')
+    plt.axis('off')
+    
+    # Add text box with normalized image statistics
+    stats_norm = f'Min: {normalized_image.min():.3f}\nMax: {normalized_image.max():.3f}\nMean: {normalized_image.mean():.3f}\nStd: {normalized_image.std():.3f}'
+    plt.text(1.1, 0.5, stats_norm, transform=plt.gca().transAxes, bbox=dict(facecolor='white', alpha=0.8))
+    
+    # Original Image Histogram
+    plt.subplot(2, 2, 3)
+    plt.hist(original_image.ravel(), bins=50, color='blue', alpha=0.7)
+    plt.title('Original Pixel Distribution')
+    plt.xlabel('Pixel Value (0-255)')
+    plt.ylabel('Frequency')
+    
+    # Normalized Image Histogram
+    plt.subplot(2, 2, 4)
+    plt.hist(normalized_image.ravel(), bins=50, color='green', alpha=0.7)
+    plt.title('Normalized Pixel Distribution')
+    plt.xlabel('Pixel Value (0-1)')
+    plt.ylabel('Frequency')
+    
+    plt.suptitle('Image Normalization Analysis\nDividing all pixel values by 255 to scale to [0,1] range', fontsize=12)
+    plt.tight_layout()
+    plt.show()
+    
+    # Print detailed explanation
+    print("\nNormalization Process Explanation:")
+    print("1. Original Image:")
+    print(f"   - Pixel value range: [{original_image.min():.1f}, {original_image.max():.1f}]")
+    print(f"   - Mean pixel value: {original_image.mean():.1f}")
+    print(f"   - Standard deviation: {original_image.std():.1f}")
+    print("\n2. Normalized Image:")
+    print(f"   - Pixel value range: [{normalized_image.min():.3f}, {normalized_image.max():.3f}]")
+    print(f"   - Mean pixel value: {normalized_image.mean():.3f}")
+    print(f"   - Standard deviation: {normalized_image.std():.3f}")
+    print("\n3. Changes Made:")
+    print("   - All pixel values divided by 255")
+    print("   - This scales the values from [0-255] to [0-1]")
+    print("   - Helps in model training by making all pixel values smaller and more manageable")
+
 def load_images_from_folder(folder, label):
     """Load images from a folder and assign labels."""
     images, labels, filenames = [], [], []
@@ -22,9 +79,18 @@ def load_images_from_folder(folder, label):
     for filename in os.listdir(folder):
         filepath = os.path.join(folder, filename)
         try:
+            # Load original image
             img = tf.keras.utils.load_img(filepath, target_size=image_size)
-            img_array = tf.keras.utils.img_to_array(img) / 255.0  # Normalize pixel values
-            images.append(img_array)
+            original_array = tf.keras.utils.img_to_array(img)
+            
+            # Normalize image
+            normalized_array = original_array / 255.0
+            
+            # Visualize normalization for the first image in each folder
+            if len(images) == 0:
+                visualize_normalization(original_array, normalized_array)
+            
+            images.append(normalized_array)
             labels.append(label)
             filenames.append(filename)
         except Exception as e:
