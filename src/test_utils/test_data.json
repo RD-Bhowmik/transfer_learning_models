@@ -1,0 +1,14 @@
+{
+    "numpy_int": 42,
+    "numpy_float": 3.14,
+    "numpy_array": [
+        1,
+        2,
+        3
+    ],
+    "regular_list": [
+        4,
+        5,
+        6
+    ]
+}

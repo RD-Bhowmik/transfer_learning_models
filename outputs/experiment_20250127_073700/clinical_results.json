@@ -1,0 +1,130 @@
+{
+    "clinical_metrics": {
+        "diagnostic_metrics": {
+            "sensitivity": 0.9384615384615385,
+            "specificity": 0.9,
+            "ppv": 0.8970588235294118,
+            "npv": 0.9402985074626866,
+            "plr": 9.384615384615387,
+            "nlr": 0.06837606837606838,
+            "accuracy": 0.9185185185185185,
+            "f1_score": 0.9172932330827067
+        },
+        "risk_metrics": {
+            "risk_ratio": 2.708160638809204,
+            "odds_ratio": 54.204429626464844,
+            "confidence_intervals": {
+                "level": 0.95,
+                "lower": 2.056086726694298,
+                "upper": 3.36023455092411
+            }
+        },
+        "clinical_thresholds": {
+            "optimal_threshold": 0.5639025568962097,
+            "screening_threshold": 0.34009796380996704,
+            "confirmation_threshold": 0.8825348615646362
+        },
+        "uncertainty_metrics": {
+            "mean_confidence": 0.6443646550178528,
+            "confidence_std": 0.27201950550079346,
+            "mean_entropy": 0.570063054561615,
+            "high_uncertainty_ratio": 0.37777777777777777
+        }
+    },
+    "validation_results": {
+        "safety_metrics": {
+            "false_negative_rate": 0.3352537722908093,
+            "missed_diagnosis_risk": 0.06153846153846154,
+            "safety_threshold_compliance": 0.3037037037037037
+        },
+        "subgroup_analysis": {},
+        "error_analysis": {
+            "false_positives": {
+                "count": 7,
+                "mean_confidence": 0.7799364924430847,
+                "indices": [
+                    15,
+                    38,
+                    75,
+                    79,
+                    102,
+                    126,
+                    127
+                ]
+            },
+            "false_negatives": {
+                "count": 4,
+                "mean_confidence": 0.7144622802734375,
+                "indices": [
+                    40,
+                    46,
+                    76,
+                    128
+                ]
+            },
+            "error_rate": 0.08148148148148149,
+            "threshold_analysis": {
+                "threshold_0.1": {
+                    "false_positives": 70,
+                    "false_negatives": 0,
+                    "total_errors": 70
+                },
+                "threshold_0.2": {
+                    "false_positives": 70,
+                    "false_negatives": 0,
+                    "total_errors": 70
+                },
+                "threshold_0.3": {
+                    "false_positives": 22,
+                    "false_negatives": 3,
+                    "total_errors": 25
+                },
+                "threshold_0.4": {
+                    "false_positives": 11,
+                    "false_negatives": 4,
+                    "total_errors": 15
+                },
+                "threshold_0.5": {
+                    "false_positives": 7,
+                    "false_negatives": 4,
+                    "total_errors": 11
+                },
+                "threshold_0.6": {
+                    "false_positives": 6,
+                    "false_negatives": 6,
+                    "total_errors": 12
+                },
+                "threshold_0.7": {
+                    "false_positives": 5,
+                    "false_negatives": 6,
+                    "total_errors": 11
+                },
+                "threshold_0.8": {
+                    "false_positives": 4,
+                    "false_negatives": 7,
+                    "total_errors": 11
+                },
+                "threshold_0.9": {
+                    "false_positives": 0,
+                    "false_negatives": 12,
+                    "total_errors": 12
+                }
+            }
+        },
+        "validation_status": {
+            "status": "FAILED",
+            "criteria_results": {
+                "false_negative_rate": false,
+                "missed_diagnosis_risk": false,
+                "safety_compliance": false
+            }
+        }
+    },
+    "safety_alerts": [],
+    "batch_statistics": {
+        "mean_prediction": 0.6077629923820496,
+        "mean_uncertainty": 0.014662407887401483,
+        "high_uncertainty_rate": 0.0,
+        "high_risk_rate": 0.4740740740740741
+    }
+}

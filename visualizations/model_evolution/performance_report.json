@@ -1,0 +1,18 @@
+{
+    "overall_improvement": {
+        "initial_accuracy": 0.7333333492279053,
+        "final_accuracy": 0.7333333492279053,
+        "accuracy_improvement": 0.0,
+        "total_training_time": 7.581874847412109,
+        "iterations": 1
+    },
+    "best_performance": {
+        "best_accuracy": 0.7333333492279053,
+        "best_iteration": 0,
+        "corresponding_hyperparameters": {
+            "learning_rate": 0.001,
+            "batch_size": 16,
+            "dropout_rate": 0.2
+        }
+    }
+}

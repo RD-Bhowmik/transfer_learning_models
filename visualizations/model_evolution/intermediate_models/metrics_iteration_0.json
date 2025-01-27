@@ -1,0 +1,14 @@
+{
+    "metrics": {
+        "val_accuracy": 0.7333333492279053,
+        "val_loss": 0.589070737361908,
+        "training_time": 7.581874847412109,
+        "epochs": 1
+    },
+    "parameters": {
+        "learning_rate": 0.001,
+        "batch_size": 16,
+        "dropout_rate": 0.2
+    },
+    "iteration": 0
+}

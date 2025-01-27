@@ -1,0 +1,335 @@
+Metadata Summary
+==================================================
+
+Dataset Statistics:
+Total samples: 197
+Total features: 20
+
+Categorical Variables:
+
+CaseID:
+CaseID
+aaaw    1
+aade    1
+aadg    1
+aaeg    1
+aaer    1
+aafu    1
+aafy    1
+aafz    1
+aagb    1
+aagc    1
+aagd    1
+aagf    1
+aagg    1
+aahe    1
+aahv    1
+aaih    1
+aail    1
+aaim    1
+aain    1
+aaio    1
+aaip    1
+aaiq    1
+aair    1
+aaje    1
+aajf    1
+aais    1
+aahm    1
+aahl    1
+aafa    1
+aafb    1
+aajc    1
+aafc    1
+aaaj    1
+aady    1
+aagv    1
+aait    1
+aadp    1
+aadz    1
+aaea    1
+aaed    1
+aaap    1
+aadf    1
+aaef    1
+aafd    1
+aafe    1
+aafj    1
+aafk    1
+aafl    1
+aafm    1
+aafo    1
+aafp    1
+aafv    1
+aafw    1
+aafx    1
+aahb    1
+aaib    1
+aaic    1
+aaid    1
+aaie    1
+aaif    1
+aaig    1
+aaii    1
+aaik    1
+aaff    1
+aafg    1
+aaia    1
+aafi    1
+aaat    1
+aaau    1
+aaav    1
+aagz    1
+aaha    1
+aahc    1
+aahd    1
+aaiv    1
+aadn    1
+aaen    1
+aahk    1
+aajl    1
+aabb    1
+aabc    1
+aabd    1
+aaci    1
+aack    1
+aaem    1
+aaiw    1
+aajb    1
+aaax    1
+aaay    1
+aaba    1
+aahn    1
+aaez    1
+aacg    1
+aaaz    1
+aaej    1
+aagy    1
+aabh    1
+aabi    1
+aabj    1
+aabl    1
+aacd    1
+aahp    1
+aahq    1
+aaca    1
+aaji    1
+aabu    1
+aabp    1
+aabn    1
+aabv    1
+aabx    1
+aabk    1
+aacz    1
+aaho    1
+aahr    1
+aahs    1
+aajj    1
+aabm    1
+aabr    1
+aabs    1
+aabt    1
+aacf    1
+aacr    1
+aacw    1
+aaes    1
+aaan    1
+aabg    1
+aacm    1
+aaco    1
+aact    1
+aabq    1
+aacb    1
+aacc    1
+aacn    1
+aacu    1
+aacy    1
+aaht    1
+aahu    1
+aace    1
+aaev    1
+aacv    1
+aaby    1
+aadx    1
+aafs    1
+aaiz    1
+aadv    1
+aabz    1
+aacp    1
+aacq    1
+aacs    1
+aadb    1
+aadw    1
+aaaq    1
+aaar    1
+aabw    1
+aaei    1
+aaeu    1
+aafq    1
+aafr    1
+aaja    1
+aaeq    1
+aaae    1
+aaaf    1
+aaag    1
+aaah    1
+aaai    1
+aagi    1
+aadi    1
+aahw    1
+aahy    1
+aadj    1
+aadm    1
+aach    1
+aadd    1
+aael    1
+aajg    1
+aadl    1
+aadk    1
+aacj    1
+aadq    1
+aadr    1
+aads    1
+aaiu    1
+aaey    1
+aaew    1
+aaex    1
+aago    1
+aags    1
+aaaa    1
+aaao    1
+aagn    1
+aaab    1
+aagq    1
+aagp    1
+aacx    1
+aaiy    1
+aagu    1
+aaix    1
+Missing values: 0
+
+HPV:
+HPV
+negative    107
+positive     90
+Missing values: 0
+
+Adequacy:
+Adequacy
+Adequate    197
+Missing values: 0
+
+Squamocolumnar junction visibility:
+Squamocolumnar junction visibility
+Completely visible    146
+Not visible            38
+Partially visible      13
+Missing values: 0
+
+Transformation zone:
+Transformation zone
+Type 1    114
+Type 3     50
+Type 2     33
+Missing values: 0
+
+Original squamous epithelium:
+Original squamous epithelium
+Mature      179
+Atrophic     18
+Missing values: 0
+
+Columnar epithelium:
+Columnar epithelium
+Ectopy absent     171
+Ectopy present     25
+2                   1
+Missing values: 0
+
+Metaplastic squamous epithelium:
+Metaplastic squamous epithelium
+Crypt (gland) openings                        178
+Nabothian cysts                                12
+Nabothian cysts and Crypt (gland) openings      6
+0                                               1
+Missing values: 0
+
+Location of the lesion:
+Location of the lesion
+Inside the T-zone                172
+Inside and outside the T-zone     20
+Outside the T-zone                 4
+On polyp                           1
+Missing values: 0
+
+Grade 1:
+Grade 1
+Thin acetowhite epithelium    194
+Fine punctation                 2
+Irregular border                1
+Missing values: 0
+
+Grade 2:
+Grade 2
+Dense acetowhite epithelium    193
+Sharp border                     2
+Coarse mosaic                    1
+Coarse punctation                1
+Missing values: 0
+
+Suspicious for invasion:
+Suspicious for invasion
+Atypical vessels     191
+Irregular surface      6
+Missing values: 0
+
+Aceto uptake:
+Aceto uptake
+Nil or transparent    87
+Distinct, stearin     75
+Thin, milky           35
+Missing values: 0
+
+Margins:
+Margins
+Nil or diffuse                             89
+Sharp and even, difference in level        79
+Sharp but irregular, jagged, satellites    29
+Missing values: 0
+
+Vessels:
+Vessels
+Absent                        106
+Fine, regular                  50
+Coarse or atypical vessels     41
+Missing values: 0
+
+Lesion size:
+Lesion size
+< 5 mm                                                86
+>15 mm, 3-4 quadrants, or endocervically undefined    68
+5-15 mm or 2 quadrants                                43
+Missing values: 0
+
+Iodine uptake:
+Iodine uptake
+Faintly or patchy yellow    73
+Distinctly yellow           49
+Unknown                     43
+Brown                       32
+Missing values: 0
+
+0:
+Series([], )
+Missing values: 197
+
+Numerical Variables:
+          Label  SwedeFinal
+count     197.0  197.000000
+mean   0.456853   27.527919
+std    0.499404   40.785971
+min         0.0    0.000000
+25%         0.0    2.000000
+50%         0.0    6.000000
+75%         1.0   10.000000
+max         1.0   99.000000

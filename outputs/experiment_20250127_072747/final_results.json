@@ -1,0 +1,25 @@
+{
+    "test_metrics": {
+        "loss": 0.36732563376426697,
+        "compile_metrics": 0.9111111164093018
+    },
+    "best_hyperparameters": {
+        "learning_rate": 0.001,
+        "batch_size": 16,
+        "dropout_rate": 0.2
+    },
+    "training_history": {
+        "accuracy": [
+            0.6347687244415283
+        ],
+        "val_accuracy": [
+            0.8283582329750061
+        ],
+        "loss": [
+            0.6314395070075989
+        ],
+        "val_loss": [
+            0.45546042919158936
+        ]
+    }
+}

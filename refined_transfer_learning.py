@@ -9,7 +9,7 @@ from collections import Counter
 import json
 import matplotlib.pyplot as plt
 import seaborn as sns
-from data_loader import load_images_from_folder, load_metadata, visualize_metadata, display_dataset_info
+from refined_code.src.data_loader import load_images_from_folder, load_metadata, visualize_metadata, display_dataset_info
 from tensorflow.keras import regularizers
 from itertools import product
 import scipy
@@ -26,7 +26,7 @@ import time
 positive_folder = "D:\\categorization\\new\\hpv\\positive"
 negative_folder = "D:\\categorization\\new\\hpv\\negative"
 xlsx_file_path = "D:\\categorization\\IARCImageBankColpo\\Cases Meta data.xlsx"
-save_folder = "D:\\transfer_learning"
+save_folder = "D:\\transfer_learning_models"
 
 def extract_case_id_from_filename(filename):
     """Extract CaseID from filename"""
