@@ -7,6 +7,8 @@ import pandas as pd
 import traceback
 import json
 import datetime
+import itertools
+import time
 
 # Add the project root directory to Python path
 project_root = os.path.dirname(os.path.abspath(__file__))
@@ -16,7 +18,7 @@ if project_root not in sys.path:
 from src.config import SAVE_FOLDER
 from src.data_processing import (
     load_and_preprocess_data, align_data, preprocess_metadata,
-    prepare_data_splits, setup_data_augmentation
+    prepare_data_splits, setup_data_augmentation, create_augmentation_dataset
 )
 from src.model import (
     create_model, setup_callbacks, train_model, evaluate_model,
@@ -51,18 +53,22 @@ from src.medical_preprocessing import ColposcopyPreprocessor, LesionAnalyzer
 from src.clinical_metrics import ClinicalMetrics, ClinicalValidator
 from src.clinical_reporting import ClinicalReport
 from src.safety_monitoring import SafetyMonitor
+from src.json_structure_visualizer import create_json_structure_visualization
 
 def setup_hyperparameters():
     """Define hyperparameter combinations for training"""
     return {
-        'learning_rates': [1e-3],
-        'batch_sizes': [16],
-        'dropout_rates': [0.2]
+        'learning_rates': [1e-3],  # 3 values
+        'batch_sizes': [16],               # 2 values
+        'dropout_rates': [0.2]            # 2 values
     }
 
 def train_and_evaluate():
     """Main training and evaluation pipeline"""
     try:
+        # Add epochs variable at the beginning of the function
+        epochs = 10  # You can adjust this number
+        
         # Define clinical features
         clinical_features = [
             'Adequacy',
@@ -149,87 +155,105 @@ def train_and_evaluate():
         
         # Initialize tracking
         tracking_dict = track_hyperparameter_performance()
+        total_combinations = (len(hyperparameters['learning_rates']) * 
+                             len(hyperparameters['batch_sizes']) * 
+                             len(hyperparameters['dropout_rates']))
+        
+        print(f"\nStarting hyperparameter search with {total_combinations} combinations...")
+        
         best_val_accuracy = 0 if previous_metrics is None else previous_metrics['metrics']['val_accuracy']
         best_model = None
         best_history = None
         best_params = None
         
-        # Add iteration counter
-        iteration = 0
-        total_iterations = (len(hyperparameters['learning_rates']) * 
-                          len(hyperparameters['batch_sizes']) * 
-                          len(hyperparameters['dropout_rates']))
-        
-        # Training loop
-        print("\nStarting training loop...")
-        for lr in hyperparameters['learning_rates']:
-            for batch_size in hyperparameters['batch_sizes']:
-                for dropout_rate in hyperparameters['dropout_rates']:
-                    iteration += 1
-                    print(f"\nTraining iteration {iteration}/{total_iterations}")
-                    print(f"Parameters: lr={lr}, batch_size={batch_size}, dropout_rate={dropout_rate}")
-                    
-                    # Create and compile model
-                    model = create_model(
-                        dropout_rate=dropout_rate, 
-                        metadata_input_shape=meta_X_train.shape[1]
-                    )
+        for lr, batch_size, dropout_rate in itertools.product(
+            hyperparameters['learning_rates'],
+            hyperparameters['batch_sizes'],
+            hyperparameters['dropout_rates']
+        ):
+            print(f"\nTrying: lr={lr}, batch_size={batch_size}, dropout_rate={dropout_rate}")
+            
+            # Track start time
+            start_time = time.time()
+            
+            # Create and train model
+            model = create_model(
+                dropout_rate=dropout_rate,
+                learning_rate=lr,
+                metadata_input_shape=meta_X_train.shape[1]
+            )
+            
+            # Create augmented training dataset
+            train_dataset = create_augmentation_dataset(
+                X_train,
+                meta_X_train, 
+                y_train,
+                batch_size=batch_size
+            )
+            
+            # Create validation dataset without augmentation
+            val_dataset = tf.data.Dataset.from_tensor_slices(
+                ((X_val, meta_X_val), y_val)
+            ).batch(batch_size)
+            
+            # Train model with augmented data
+            history = model.fit(
+                train_dataset,
+                validation_data=val_dataset,
+                epochs=epochs,
+                callbacks=callbacks,
+                class_weight=class_weights
+            )
+            
+            # Calculate training time
+            training_time = time.time() - start_time
+            
+            # Track metrics
+            tracking_dict['learning_rates'].append(lr)
+            tracking_dict['batch_sizes'].append(batch_size)
+            tracking_dict['dropout_rates'].append(dropout_rate)
+            tracking_dict['val_accuracies'].append(max(history.history['val_accuracy']))
+            tracking_dict['val_losses'].append(min(history.history['val_loss']))
+            tracking_dict['training_times'].append(training_time)
+            tracking_dict['epochs_trained'].append(len(history.history['val_accuracy']))
+            tracking_dict['precision'].append(max(history.history['precision']))
+            tracking_dict['recall'].append(max(history.history['recall']))
+            tracking_dict['auc'].append(max(history.history['auc']))
+            
+            # Update if better than previous best
+            val_accuracy = max(history.history['val_accuracy'])
+            if val_accuracy > best_val_accuracy:
+                best_val_accuracy = val_accuracy
+                best_model = model
+                best_history = history
+                best_params = {
+                    'learning_rate': lr,
+                    'batch_size': batch_size,
+                    'dropout_rate': dropout_rate
+                }
+                print(f"\nNew best model found!")
+                print(f"Validation accuracy: {val_accuracy:.4f}")
+                print(f"Parameters: {best_params}")
 
-                    # Compile model with metrics
-                    model.compile(
-                        optimizer=tf.keras.optimizers.Adam(learning_rate=lr),
-                        loss="binary_crossentropy",
-                        metrics=[
-                            "accuracy",
-                            tf.keras.metrics.Precision(name='precision'),
-                            tf.keras.metrics.Recall(name='recall'),
-                            tf.keras.metrics.AUC(name='auc')
-                        ]
-                    )
+        # After the search, visualize results
+        print("\nGenerating hyperparameter analysis...")
+        visualize_hyperparameter_effects(tracking_dict, viz_folder)
 
-                    # Load weights from previous best model if available
-                    if previous_model is not None:
-                        try:
-                            model.set_weights(previous_model.get_weights())
-                            print("Loaded weights from previous best model")
-                        except:
-                            print("Could not load weights from previous model, starting fresh")
+        # Save hyperparameter search results
+        search_results = {
+            'best_parameters': best_params,
+            'best_accuracy': float(best_val_accuracy),
+            'parameter_search': {
+                'learning_rates_tested': hyperparameters['learning_rates'],
+                'batch_sizes_tested': hyperparameters['batch_sizes'],
+                'dropout_rates_tested': hyperparameters['dropout_rates'],
+                'total_combinations': total_combinations,
+                'tracking_metrics': tracking_dict
+            }
+        }
 
-                    # Train model
-                    history = train_model(
-                        model,
-                        train_data,
-                        val_data,
-                        batch_size,
-                        callbacks,
-                        class_weights
-                    )
-
-                    # Update tracking
-                    val_accuracy = max(history.history['val_accuracy'])
-                    if val_accuracy > best_val_accuracy:
-                        best_val_accuracy = val_accuracy
-                        best_model = model
-                        best_history = history
-                        best_params = {
-                            'learning_rate': lr,
-                            'batch_size': batch_size,
-                            'dropout_rate': dropout_rate
-                        }
-
-                    # Save intermediate results
-                    current_metrics = {
-                        'val_accuracy': val_accuracy,
-                        'val_loss': min(history.history['val_loss'])
-                    }
-                    
-                    save_intermediate_model(
-                        model, 
-                        current_metrics, 
-                        best_params, 
-                        iteration,
-                        viz_folder
-                    )
+        with open(os.path.join(viz_folder, 'hyperparameter_search_results.json'), 'w') as f:
+            json.dump(search_results, f, indent=4)
 
         # Evaluate best model
         print("\nEvaluating best model...")
@@ -282,9 +306,6 @@ def train_and_evaluate():
         weight_changes = safe_compare_model_weights(previous_model, best_model, viz_folder)
         if weight_changes:
             visualize_weight_updates(weight_changes, viz_folder)
-        
-        # Add hyperparameter visualization
-        visualize_hyperparameter_effects(tracking_dict, viz_folder)
         
         # Add augmentation visualization
         sample_image = X_train[0]
@@ -428,6 +449,10 @@ def train_and_evaluate():
         print("\nTraining and validation completed successfully!")
         print(f"Results saved in: {experiment_folder}")
         print(f"Clinical report generated: {report_path}")
+        
+        # Create JSON structure visualization
+        print("\nGenerating JSON structure visualization...")
+        create_json_structure_visualization(experiment_folder, viz_folder)
         
         # If there are critical safety alerts, print them
         critical_alerts = [a for a in safety_alerts if any(

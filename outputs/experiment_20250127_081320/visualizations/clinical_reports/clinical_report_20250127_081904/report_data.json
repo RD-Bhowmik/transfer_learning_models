@@ -1,0 +1,129 @@
+{
+    "timestamp": "2025-01-27T08:19:04.222346",
+    "prediction_results": {
+        "prediction": 0.48763343691825867,
+        "uncertainties": [
+            0.006153840058826766
+        ],
+        "batch_statistics": {
+            "mean_prediction": 0.48763343691825867,
+            "mean_uncertainty": 0.006153840058826766,
+            "high_uncertainty_rate": 0.0,
+            "high_risk_rate": 0.4444444444444444
+        }
+    },
+    "clinical_metrics": {
+        "diagnostic_metrics": {
+            "sensitivity": 0.9230769230769231,
+            "specificity": 1.0,
+            "ppv": 1.0,
+            "npv": 0.9333333333333333,
+            "plr": Infinity,
+            "nlr": 0.07692307692307687,
+            "accuracy": 0.9629629629629629,
+            "f1_score": 0.96
+        },
+        "risk_metrics": {
+            "risk_ratio": 11.362005233764648,
+            "odds_ratio": 9606.365234375,
+            "confidence_intervals": {
+                "level": 0.95,
+                "lower": 10.476536576865307,
+                "upper": 12.24747389066399
+            }
+        },
+        "clinical_thresholds": {
+            "optimal_threshold": 0.4656822979450226,
+            "screening_threshold": 0.2421189844608307,
+            "confirmation_threshold": 0.3408137857913971
+        },
+        "uncertainty_metrics": {
+            "mean_confidence": 0.8864540457725525,
+            "confidence_std": 0.17670492827892303,
+            "mean_entropy": 0.24649889767169952,
+            "high_uncertainty_ratio": 0.044444444444444446
+        }
+    },
+    "validation_results": {
+        "safety_metrics": {
+            "false_negative_rate": 0.2746227709190672,
+            "missed_diagnosis_risk": 0.07692307692307693,
+            "safety_threshold_compliance": 0.42962962962962964
+        },
+        "subgroup_analysis": {},
+        "error_analysis": {
+            "false_positives": {
+                "count": 0,
+                "mean_confidence": 0.0,
+                "indices": []
+            },
+            "false_negatives": {
+                "count": 5,
+                "mean_confidence": 0.7903924584388733,
+                "indices": [
+                    40,
+                    46,
+                    76,
+                    83,
+                    128
+                ]
+            },
+            "error_rate": 0.037037037037037035,
+            "threshold_analysis": {
+                "threshold_0.1": {
+                    "false_positives": 14,
+                    "false_negatives": 1,
+                    "total_errors": 15
+                },
+                "threshold_0.2": {
+                    "false_positives": 7,
+                    "false_negatives": 3,
+                    "total_errors": 10
+                },
+                "threshold_0.3": {
+                    "false_positives": 5,
+                    "false_negatives": 4,
+                    "total_errors": 9
+                },
+                "threshold_0.4": {
+                    "false_positives": 3,
+                    "false_negatives": 4,
+                    "total_errors": 7
+                },
+                "threshold_0.5": {
+                    "false_positives": 0,
+                    "false_negatives": 5,
+                    "total_errors": 5
+                },
+                "threshold_0.6": {
+                    "false_positives": 0,
+                    "false_negatives": 5,
+                    "total_errors": 5
+                },
+                "threshold_0.7": {
+                    "false_positives": 0,
+                    "false_negatives": 5,
+                    "total_errors": 5
+                },
+                "threshold_0.8": {
+                    "false_positives": 0,
+                    "false_negatives": 5,
+                    "total_errors": 5
+                },
+                "threshold_0.9": {
+                    "false_positives": 0,
+                    "false_negatives": 5,
+                    "total_errors": 5
+                }
+            }
+        },
+        "validation_status": {
+            "status": "FAILED",
+            "criteria_results": {
+                "false_negative_rate": false,
+                "missed_diagnosis_risk": false,
+                "safety_compliance": false
+            }
+        }
+    }
+}

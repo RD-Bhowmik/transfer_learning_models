@@ -1,0 +1,33 @@
+{
+    "overall_improvement": {
+        "val_accuracies": [],
+        "val_losses": [],
+        "training_times": [],
+        "initial_accuracy": null,
+        "final_accuracy": null,
+        "total_iterations": 0
+    },
+    "best_performance": {
+        "best_accuracy": null,
+        "best_iteration": null,
+        "corresponding_hyperparameters": {
+            "learning_rate": null,
+            "batch_size": null,
+            "dropout_rate": null
+        }
+    },
+    "metrics_summary": {
+        "precision": {
+            "max": null,
+            "mean": null
+        },
+        "recall": {
+            "max": null,
+            "mean": null
+        },
+        "auc": {
+            "max": null,
+            "mean": null
+        }
+    }
+}

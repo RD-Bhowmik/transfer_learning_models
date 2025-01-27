@@ -1,0 +1,4410 @@
+JSON Files Structure
+==================================================
+
+
+clinical_results.json
+---------------------
+clinical_metrics:
+  diagnostic_metrics:
+    sensitivity: <float>
+    specificity: <float>
+    ppv: <float>
+    npv: <float>
+    plr: <float>
+    nlr: <float>
+    accuracy: <float>
+    f1_score: <float>
+  risk_metrics:
+    risk_ratio: <float>
+    odds_ratio: <float>
+    confidence_intervals:
+      level: <float>
+      lower: <float>
+      upper: <float>
+  clinical_thresholds:
+    optimal_threshold: <float>
+    screening_threshold: <float>
+    confirmation_threshold: <float>
+  uncertainty_metrics:
+    mean_confidence: <float>
+    confidence_std: <float>
+    mean_entropy: <float>
+    high_uncertainty_ratio: <float>
+validation_results:
+  safety_metrics:
+    false_negative_rate: <float>
+    missed_diagnosis_risk: <float>
+    safety_threshold_compliance: <float>
+  subgroup_analysis:
+  error_analysis:
+    false_positives:
+      count: <int>
+      mean_confidence: <float>
+      indices:
+        List of 1 items:
+          <int>
+    false_negatives:
+      count: <int>
+      mean_confidence: <float>
+      indices:
+        List of 19 items:
+          <int>
+    error_rate: <float>
+    threshold_analysis:
+      threshold_0.1:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.2:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.3:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.4:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.5:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.6:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.7:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.8:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.9:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+  validation_status:
+    status: <str>
+    criteria_results:
+      false_negative_rate: <bool>
+      missed_diagnosis_risk: <bool>
+      safety_compliance: <bool>
+safety_alerts:
+  Empty list
+batch_statistics:
+  mean_prediction: <float>
+  mean_uncertainty: <float>
+  high_uncertainty_rate: <float>
+  high_risk_rate: <float>
+
+
+
+detailed_metrics.json
+---------------------
+classification_report:
+  0:
+    precision: <float>
+    recall: <float>
+    f1-score: <float>
+    support: <float>
+  1:
+    precision: <float>
+    recall: <float>
+    f1-score: <float>
+    support: <float>
+  accuracy: <float>
+  macro avg:
+    precision: <float>
+    recall: <float>
+    f1-score: <float>
+    support: <float>
+  weighted avg:
+    precision: <float>
+    recall: <float>
+    f1-score: <float>
+    support: <float>
+confusion_matrix:
+  List of 2 items:
+    List of 2 items:
+      <int>
+probabilities_summary:
+  mean: <float>
+  std: <float>
+  min: <float>
+  max: <float>
+
+
+
+final_results.json
+------------------
+test_metrics:
+  loss: <float>
+  compile_metrics: <float>
+best_hyperparameters:
+  learning_rate: <float>
+  batch_size: <int>
+  dropout_rate: <float>
+training_history:
+  accuracy:
+    List of 1 items:
+      <float>
+  val_accuracy:
+    List of 1 items:
+      <float>
+  loss:
+    List of 1 items:
+      <float>
+  val_loss:
+    List of 1 items:
+      <float>
+
+
+
+performance_report.json
+-----------------------
+overall_improvement:
+  val_accuracies:
+    Empty list
+  val_losses:
+    Empty list
+  training_times:
+    Empty list
+  initial_accuracy: <NoneType>
+  final_accuracy: <NoneType>
+  total_iterations: <int>
+best_performance:
+  best_accuracy: <NoneType>
+  best_iteration: <NoneType>
+  corresponding_hyperparameters:
+    learning_rate: <NoneType>
+    batch_size: <NoneType>
+    dropout_rate: <NoneType>
+metrics_summary:
+  precision:
+    max: <NoneType>
+    mean: <NoneType>
+  recall:
+    max: <NoneType>
+    mean: <NoneType>
+  auc:
+    max: <NoneType>
+    mean: <NoneType>
+
+
+
+visualizations\feature_importance.json
+--------------------------------------
+Adequacy: <float>
+Squamocolumnar junction visibility: <float>
+Transformation zone: <float>
+Original squamous epithelium: <float>
+Columnar epithelium: <float>
+Metaplastic squamous epithelium: <float>
+Location of the lesion: <float>
+Grade 1: <float>
+Grade 2: <float>
+Suspicious for invasion: <float>
+Aceto uptake: <float>
+Margins: <float>
+Vessels: <float>
+Lesion size: <float>
+Iodine uptake: <float>
+SwedeFinal: <float>
+
+
+
+visualizations\interpretation_sample_101.json
+---------------------------------------------
+sample_id: <int>
+feature_importance:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+uncertainty:
+  mean_prediction: <float>
+  uncertainty: <float>
+  confidence_interval:
+    List of 2 items:
+      <float>
+
+
+
+visualizations\interpretation_sample_120.json
+---------------------------------------------
+sample_id: <int>
+feature_importance:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+uncertainty:
+  mean_prediction: <float>
+  uncertainty: <float>
+  confidence_interval:
+    List of 2 items:
+      <float>
+
+
+
+visualizations\interpretation_sample_123.json
+---------------------------------------------
+sample_id: <int>
+feature_importance:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+uncertainty:
+  mean_prediction: <float>
+  uncertainty: <float>
+  confidence_interval:
+    List of 2 items:
+      <float>
+
+
+
+visualizations\interpretation_sample_26.json
+--------------------------------------------
+sample_id: <int>
+feature_importance:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+uncertainty:
+  mean_prediction: <float>
+  uncertainty: <float>
+  confidence_interval:
+    List of 2 items:
+      <float>
+
+
+
+visualizations\interpretation_sample_66.json
+--------------------------------------------
+sample_id: <int>
+feature_importance:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+uncertainty:
+  mean_prediction: <float>
+  uncertainty: <float>
+  confidence_interval:
+    List of 2 items:
+      <float>
+
+
+
+visualizations\patient_profile_0.json
+-------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_1.json
+-------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_10.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_100.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_101.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_102.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_103.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_104.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_105.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_106.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_107.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_108.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_109.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_11.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_110.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_111.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_112.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_113.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_114.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_115.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_116.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_117.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_118.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_119.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_12.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_120.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_121.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_122.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_123.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_124.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_125.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_126.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_127.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_128.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_129.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_13.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_130.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_131.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_132.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_133.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_134.json
+---------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_14.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_15.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_16.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_17.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_18.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_19.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_2.json
+-------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_20.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_21.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_22.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_23.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_24.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_25.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_26.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_27.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_28.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_29.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_3.json
+-------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_30.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_31.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_32.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_33.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_34.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_35.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_36.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_37.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_38.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_39.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_4.json
+-------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_40.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_41.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_42.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_43.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_44.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_45.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_46.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_47.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_48.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_49.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_5.json
+-------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_50.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_51.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_52.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_53.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_54.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_55.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_56.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_57.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_58.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_59.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_6.json
+-------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_60.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_61.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_62.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_63.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_64.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_65.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_66.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_67.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_68.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_69.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_7.json
+-------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_70.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_71.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_72.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_73.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_74.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_75.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_76.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_77.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_78.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_79.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_8.json
+-------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_80.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_81.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_82.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_83.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_84.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_85.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_86.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_87.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_88.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_89.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_9.json
+-------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_90.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_91.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 1 items:
+    <str>
+
+
+
+visualizations\patient_profile_92.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_93.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_94.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_95.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_96.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_97.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\patient_profile_98.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  List of 2 items:
+    <str>
+
+
+
+visualizations\patient_profile_99.json
+--------------------------------------
+patient_id: <int>
+prediction: <float>
+feature_scores:
+  Adequacy: <float>
+  Squamocolumnar junction visibility: <float>
+  Transformation zone: <float>
+  Original squamous epithelium: <float>
+  Columnar epithelium: <float>
+  Metaplastic squamous epithelium: <float>
+  Location of the lesion: <float>
+  Grade 1: <float>
+  Grade 2: <float>
+  Suspicious for invasion: <float>
+  Aceto uptake: <float>
+  Margins: <float>
+  Vessels: <float>
+  Lesion size: <float>
+  Iodine uptake: <float>
+  SwedeFinal: <float>
+anomalous_features:
+  Empty list
+
+
+
+visualizations\clinical_reports\clinical_report_20250127_075550\report_data.json
+--------------------------------------------------------------------------------
+timestamp: <str>
+prediction_results:
+  prediction: <float>
+  uncertainties:
+    List of 1 items:
+      <float>
+  batch_statistics:
+    mean_prediction: <float>
+    mean_uncertainty: <float>
+    high_uncertainty_rate: <float>
+    high_risk_rate: <float>
+clinical_metrics:
+  diagnostic_metrics:
+    sensitivity: <float>
+    specificity: <float>
+    ppv: <float>
+    npv: <float>
+    plr: <float>
+    nlr: <float>
+    accuracy: <float>
+    f1_score: <float>
+  risk_metrics:
+    risk_ratio: <float>
+    odds_ratio: <float>
+    confidence_intervals:
+      level: <float>
+      lower: <float>
+      upper: <float>
+  clinical_thresholds:
+    optimal_threshold: <float>
+    screening_threshold: <float>
+    confirmation_threshold: <float>
+  uncertainty_metrics:
+    mean_confidence: <float>
+    confidence_std: <float>
+    mean_entropy: <float>
+    high_uncertainty_ratio: <float>
+validation_results:
+  safety_metrics:
+    false_negative_rate: <float>
+    missed_diagnosis_risk: <float>
+    safety_threshold_compliance: <float>
+  subgroup_analysis:
+  error_analysis:
+    false_positives:
+      count: <int>
+      mean_confidence: <float>
+      indices:
+        List of 1 items:
+          <int>
+    false_negatives:
+      count: <int>
+      mean_confidence: <float>
+      indices:
+        List of 19 items:
+          <int>
+    error_rate: <float>
+    threshold_analysis:
+      threshold_0.1:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.2:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.3:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.4:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.5:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.6:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.7:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.8:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+      threshold_0.9:
+        false_positives: <int>
+        false_negatives: <int>
+        total_errors: <int>
+  validation_status:
+    status: <str>
+    criteria_results:
+      false_negative_rate: <bool>
+      missed_diagnosis_risk: <bool>
+      safety_compliance: <bool>
+
+
+
+visualizations\model_evolution\performance_report.json
+------------------------------------------------------
+overall_improvement:
+  val_accuracies:
+    Empty list
+  val_losses:
+    Empty list
+  training_times:
+    Empty list
+  initial_accuracy: <NoneType>
+  final_accuracy: <NoneType>
+  total_iterations: <int>
+best_performance:
+  best_accuracy: <NoneType>
+  best_iteration: <NoneType>
+  corresponding_hyperparameters:
+    learning_rate: <NoneType>
+    batch_size: <NoneType>
+    dropout_rate: <NoneType>
+metrics_summary:
+  precision:
+    max: <NoneType>
+    mean: <NoneType>
+  recall:
+    max: <NoneType>
+    mean: <NoneType>
+  auc:
+    max: <NoneType>
+    mean: <NoneType>
+
+
+
+visualizations\model_evolution\intermediate_models\metrics_iteration_1.json
+---------------------------------------------------------------------------
+iteration: <int>
+metrics:
+  val_accuracy: <float>
+  val_loss: <float>
+parameters:
+  learning_rate: <float>
+  batch_size: <int>
+  dropout_rate: <float>
+timestamp: <str>
+
+
+
+visualizations\statistical_analysis\statistical_results.json
+------------------------------------------------------------
+chi_square_tests:
+  Adequacy:
+    chi2: <float>
+    p_value: <float>
+  Squamocolumnar junction visibility:
+    chi2: <float>
+    p_value: <float>
+  Transformation zone:
+    chi2: <float>
+    p_value: <float>
+  Original squamous epithelium:
+    chi2: <float>
+    p_value: <float>
+  Columnar epithelium:
+    chi2: <float>
+    p_value: <float>
+  Metaplastic squamous epithelium:
+    chi2: <float>
+    p_value: <float>
+  Location of the lesion:
+    chi2: <float>
+    p_value: <float>
+  Grade 1:
+    chi2: <float>
+    p_value: <float>
+  Grade 2:
+    chi2: <float>
+    p_value: <float>
+  Suspicious for invasion:
+    chi2: <float>
+    p_value: <float>
+  Aceto uptake:
+    chi2: <float>
+    p_value: <float>
+  Margins:
+    chi2: <float>
+    p_value: <float>
+  Vessels:
+    chi2: <float>
+    p_value: <float>
+  Lesion size:
+    chi2: <float>
+    p_value: <float>
+  Iodine uptake:
+    chi2: <float>
+    p_value: <float>
+  SwedeFinal:
+    chi2: <float>
+    p_value: <float>
+correlations:
+  Adequacy:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Squamocolumnar junction visibility:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Transformation zone:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Original squamous epithelium:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Columnar epithelium:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Metaplastic squamous epithelium:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Location of the lesion:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Grade 1:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Grade 2:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Suspicious for invasion:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Aceto uptake:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Margins:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Vessels:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Lesion size:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  Iodine uptake:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+  SwedeFinal:
+    Adequacy: <float>
+    Squamocolumnar junction visibility: <float>
+    Transformation zone: <float>
+    Original squamous epithelium: <float>
+    Columnar epithelium: <float>
+    Metaplastic squamous epithelium: <float>
+    Location of the lesion: <float>
+    Grade 1: <float>
+    Grade 2: <float>
+    Suspicious for invasion: <float>
+    Aceto uptake: <float>
+    Margins: <float>
+    Vessels: <float>
+    Lesion size: <float>
+    Iodine uptake: <float>
+    SwedeFinal: <float>
+vif_factors:
+  Columnar epithelium: <float>
+  SwedeFinal: <float>
+

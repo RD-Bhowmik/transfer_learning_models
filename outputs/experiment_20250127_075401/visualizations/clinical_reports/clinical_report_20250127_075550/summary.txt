@@ -1,0 +1,19 @@
+Clinical Report Summary
+==================================================
+Generated on: 2025-01-27T07:55:50.067859
+
+Prediction Results:
+Mean Prediction: 0.428
+
+Clinical Metrics:
+sensitivity: 0.708
+specificity: 0.986
+ppv: 0.979
+npv: 0.784
+plr: 49.538
+nlr: 0.297
+accuracy: 0.852
+f1_score: 0.821
+
+Validation Status:
+Status: FAILED

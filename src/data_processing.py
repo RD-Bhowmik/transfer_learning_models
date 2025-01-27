@@ -10,6 +10,9 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.applications.efficientnet import preprocess_input
 from collections import Counter
 import traceback  # Add this import at the top
+import tensorflow as tf
+import albumentations as A
+import cv2
 
 # Add parent directory to Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -343,6 +346,122 @@ def prepare_data_splits(all_images_aligned, all_labels_aligned, metadata_feature
               f"labels={np.array(all_labels_aligned).shape}, "
               f"metadata={metadata_features_processed.shape}")
         raise
+
+def create_medical_augmentation_pipeline():
+    """Create an augmentation pipeline specific for colposcopy images"""
+    return A.Compose([
+        # Preserve tissue context and natural colors
+        A.OneOf([
+            A.RandomBrightnessContrast(
+                brightness_limit=0.1,  # Reduced from default for medical relevance
+                contrast_limit=0.1,
+                p=0.5
+            ),
+            A.ColorJitter(
+                brightness=0.1,
+                contrast=0.1,
+                saturation=0.1,
+                hue=0.05,  # Minimal hue change to preserve diagnostic colors
+                p=0.5
+            ),
+        ], p=0.7),
+        
+        # Medical-relevant spatial transformations
+        A.OneOf([
+            A.Rotate(
+                limit=15,  # Limited rotation for realistic viewing angles
+                border_mode=cv2.BORDER_CONSTANT,
+                p=0.5
+            ),
+            A.ShiftScaleRotate(
+                shift_limit=0.0625,
+                scale_limit=0.1,
+                rotate_limit=15,
+                border_mode=cv2.BORDER_CONSTANT,
+                p=0.5
+            ),
+        ], p=0.7),
+        
+        # Maintain tissue context - fix always_apply
+        A.OneOf([
+            A.RandomCrop(
+                height=224,
+                width=224,
+                p=1.0  # Changed from always_apply
+            ),
+            A.CenterCrop(
+                height=224,
+                width=224,
+                p=1.0  # Changed from always_apply
+            ),
+        ], p=1.0),
+        
+        # Realistic lighting variations
+        A.OneOf([
+            A.RandomGamma(
+                gamma_limit=(80, 120),  # Subtle gamma changes
+                p=0.5
+            ),
+            A.CLAHE(  # Contrast Limited Adaptive Histogram Equalization
+                clip_limit=2.0,
+                tile_grid_size=(8, 8),
+                p=0.5
+            ),
+        ], p=0.5),
+        
+        # Fix GaussNoise parameters
+        A.OneOf([
+            A.GaussNoise(
+                var_limit=(10, 50),  # Fixed parameter name
+                mean=0,
+                p=0.3
+            ),
+            A.MedianBlur(
+                blur_limit=3,
+                p=0.3
+            ),
+        ], p=0.3),
+    ])
+
+def augment_medical_image(image, augmentation):
+    """Apply medical-specific augmentation to an image"""
+    # Ensure image is in correct format
+    if isinstance(image, tf.Tensor):
+        image = image.numpy()
+    
+    # Convert to uint8 if needed
+    if image.dtype != np.uint8:
+        image = (image * 255).astype(np.uint8)
+    
+    # Apply augmentation
+    augmented = augmentation(image=image)
+    
+    # Return normalized image
+    return augmented['image'].astype(np.float32) / 255.0
+
+def create_augmentation_dataset(images, metadata, labels, batch_size=32):
+    """Create a dataset with medical-specific augmentation"""
+    augmentation = create_medical_augmentation_pipeline()
+    
+    def augment_batch(images, metadata, labels):
+        # Augment images
+        augmented_images = tf.py_function(
+            lambda x: np.stack([augment_medical_image(img, augmentation) for img in x]),
+            [images],
+            tf.float32
+        )
+        augmented_images.set_shape([None, 224, 224, 3])
+        
+        # Return both image and metadata inputs
+        return (augmented_images, metadata), labels
+    
+    # Create dataset with both images and metadata
+    dataset = tf.data.Dataset.from_tensor_slices((images, metadata, labels))
+    dataset = dataset.batch(batch_size)
+    dataset = dataset.map(augment_batch, num_parallel_calls=tf.data.AUTOTUNE)
+    dataset = dataset.prefetch(tf.data.AUTOTUNE)
+    
+    return dataset
 
 if __name__ == "__main__":
     print("Testing data processing module...")

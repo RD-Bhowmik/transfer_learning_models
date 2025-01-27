@@ -23,7 +23,7 @@ if not os.path.exists(init_file):
 POSITIVE_FOLDER = os.path.join(DATA_PATH, "new", "hpv", "positive")
 NEGATIVE_FOLDER = os.path.join(DATA_PATH, "new", "hpv", "negative")
 METADATA_PATH = os.path.join(DATA_PATH, "IARCImageBankColpo", "Cases Meta data.xlsx")
-SAVE_FOLDER = os.path.join(REFINED_CODE_PATH, "outputs")
+SAVE_FOLDER = "path/to/save/folder"  # Update this path as needed
 
 # Create output directory
 if not os.path.exists(SAVE_FOLDER):

@@ -336,41 +336,72 @@ def visualize_weight_updates(weight_changes, viz_folder):
     plt.tight_layout()
     save_plot(fig, os.path.join(viz_folder, "model_evolution", "weight_updates"), "weight_changes")
 
-def visualize_hyperparameter_effects(tracking_dict, viz_folder):
-    """Visualize effects of different hyperparameters"""
-    fig = plt.figure(figsize=(15, 10))
+def visualize_hyperparameter_effects(tracking_dict, save_folder):
+    """Visualize the effects of hyperparameters on model performance"""
+    plt.figure(figsize=(20, 15))
     
-    # Learning Rate vs Accuracy
+    # Learning Rate Effect
     plt.subplot(2, 2, 1)
-    plt.scatter(tracking_dict['learning_rates'], tracking_dict['val_accuracies'])
-    plt.xscale('log')
+    lr_df = pd.DataFrame({
+        'learning_rate': tracking_dict['learning_rates'],
+        'accuracy': tracking_dict['val_accuracies']
+    })
+    lr_mean = lr_df.groupby('learning_rate')['accuracy'].mean()
+    plt.semilogx(lr_mean.index, lr_mean.values, 'o-')
+    plt.grid(True)
     plt.xlabel('Learning Rate')
     plt.ylabel('Validation Accuracy')
     plt.title('Learning Rate Effect')
     
-    # Batch Size vs Accuracy
+    # Batch Size Effect
     plt.subplot(2, 2, 2)
-    plt.scatter(tracking_dict['batch_sizes'], tracking_dict['val_accuracies'])
+    batch_df = pd.DataFrame({
+        'batch_size': tracking_dict['batch_sizes'],
+        'accuracy': tracking_dict['val_accuracies']
+    })
+    batch_mean = batch_df.groupby('batch_size')['accuracy'].mean()
+    plt.plot(batch_mean.index, batch_mean.values, 'o-')
+    plt.grid(True)
     plt.xlabel('Batch Size')
     plt.ylabel('Validation Accuracy')
     plt.title('Batch Size Effect')
     
-    # Dropout Rate vs Accuracy
+    # Dropout Rate Effect
     plt.subplot(2, 2, 3)
-    plt.scatter(tracking_dict['dropout_rates'], tracking_dict['val_accuracies'])
+    dropout_df = pd.DataFrame({
+        'dropout_rate': tracking_dict['dropout_rates'],
+        'accuracy': tracking_dict['val_accuracies']
+    })
+    dropout_mean = dropout_df.groupby('dropout_rate')['accuracy'].mean()
+    plt.plot(dropout_mean.index, dropout_mean.values, 'o-')
+    plt.grid(True)
     plt.xlabel('Dropout Rate')
     plt.ylabel('Validation Accuracy')
     plt.title('Dropout Rate Effect')
     
     # Training Time vs Accuracy
     plt.subplot(2, 2, 4)
-    plt.scatter(tracking_dict['training_times'], tracking_dict['val_accuracies'])
+    plt.plot(tracking_dict['training_times'], tracking_dict['val_accuracies'], 'o-')
+    plt.grid(True)
     plt.xlabel('Training Time (s)')
     plt.ylabel('Validation Accuracy')
     plt.title('Training Time vs Accuracy')
     
     plt.tight_layout()
-    save_plot(fig, os.path.join(viz_folder, "hyperparameter_tuning", "combinations"), "hyperparameter_effects")
+    plt.savefig(os.path.join(save_folder, 'hyperparameter_effects.png'))
+    plt.close()
+    
+    # Save numerical results
+    results = {
+        'learning_rate_effect': lr_mean.to_dict(),
+        'batch_size_effect': batch_mean.to_dict(),
+        'dropout_effect': dropout_mean.to_dict(),
+        'training_time_correlation': np.corrcoef(tracking_dict['training_times'], 
+                                               tracking_dict['val_accuracies'])[0,1]
+    }
+    
+    with open(os.path.join(save_folder, 'hyperparameter_analysis.json'), 'w') as f:
+        json.dump(results, f, indent=4)
 
 def visualize_data_augmentation(sample_image, viz_folder):
     """Visualize data augmentation effects on a sample image"""

@@ -1,5 +1,5 @@
 import tensorflow as tf
-from tensorflow.keras import regularizers, layers, Model
+from tensorflow.keras import regularizers, layers, Model, Input
 import numpy as np
 import json
 import os
@@ -7,6 +7,7 @@ import time
 from sklearn.utils.class_weight import compute_class_weight
 import datetime
 import traceback
+from tqdm import tqdm  # Add at the top of the file
 
 class CervicalCancerModel:
     """Enhanced model for cervical cancer detection"""
@@ -144,8 +145,15 @@ class CervicalCancerModel:
         
         return outputs
 
-def create_model(dropout_rate, image_input_shape=(224, 224, 3), metadata_input_shape=None, learning_rate=0.001):
-    """Create hybrid model combining image and clinical features"""
+def create_model(dropout_rate, learning_rate, image_input_shape=(224, 224, 3), metadata_input_shape=None):
+    """Create hybrid model combining image and clinical features
+    
+    Args:
+        dropout_rate (float): Dropout rate for regularization
+        learning_rate (float): Learning rate for optimizer
+        image_input_shape (tuple): Shape of input images (height, width, channels)
+        metadata_input_shape (int, optional): Number of clinical features
+    """
     # Image input branch
     image_input = tf.keras.Input(shape=image_input_shape, name="image_input")
     x = tf.keras.applications.EfficientNetB0(
@@ -178,7 +186,7 @@ def create_model(dropout_rate, image_input_shape=(224, 224, 3), metadata_input_s
         outputs = tf.keras.layers.Dense(1, activation='sigmoid')(image_features)
         model = tf.keras.Model(inputs=image_input, outputs=outputs)
     
-    # Compile model
+    # Compile model with provided learning rate
     model.compile(
         optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate),
         loss="binary_crossentropy",
@@ -218,7 +226,7 @@ def train_model(model, train_data, val_data, batch_size, callbacks, class_weight
         [X_train, meta_X_train],
         y_train,
         validation_data=([X_val, meta_X_val], y_val),
-        epochs=1,
+        epochs=10,
         batch_size=batch_size,
         callbacks=callbacks,
         class_weight=class_weights,
@@ -336,10 +344,167 @@ def safe_compare_model_weights(previous_model, current_model, viz_folder):
         print(f"Error comparing weights: {str(e)}")
         return None
 
+def setup_hyperparameters():
+    """Define hyperparameter combinations for training"""
+    return {
+        'learning_rates': [1e-3],        # Reduced to 2 values
+        'batch_sizes': [16],               # Reduced to 2 values
+        'dropout_rates': [0.2]            # Reduced to 2 values
+    }
+
+def train_and_evaluate():
+    try:
+        hyperparameters = setup_hyperparameters()
+        
+        # Calculate total combinations
+        total_combinations = (
+            len(hyperparameters['learning_rates']) * 
+            len(hyperparameters['batch_sizes']) * 
+            len(hyperparameters['dropout_rates'])
+        )
+        
+        # Initialize tracking
+        best_val_accuracy = 0
+        best_model = None
+        best_history = None
+        best_params = None
+        
+        print(f"\nStarting hyperparameter search with {total_combinations} combinations...")
+        
+        # Create combinations list for tqdm
+        combinations = [
+            (lr, bs, dr) 
+            for lr in hyperparameters['learning_rates']
+            for bs in hyperparameters['batch_sizes']
+            for dr in hyperparameters['dropout_rates']
+        ]
+        
+        # Training loop with progress bar
+        for lr, batch_size, dropout_rate in tqdm(combinations, 
+                                               desc="Hyperparameter Search",
+                                               total=total_combinations):
+            print(f"\nTrying: lr={lr}, batch_size={batch_size}, dropout_rate={dropout_rate}")
+            
+            # Create and train model...
+            model = create_model(
+                dropout_rate=dropout_rate,
+                learning_rate=lr,
+                metadata_input_shape=meta_X_train.shape[1]
+            )
+            
+            # Add early stopping with more aggressive parameters
+            early_stopping = tf.keras.callbacks.EarlyStopping(
+                monitor='val_accuracy',
+                patience=3,                # Reduced from 5 to 3
+                min_delta=0.01,           # Minimum improvement required
+                restore_best_weights=True
+            )
+            
+            # Add reduce learning rate on plateau
+            reduce_lr = tf.keras.callbacks.ReduceLROnPlateau(
+                monitor='val_accuracy',
+                factor=0.2,
+                patience=2,
+                min_lr=1e-6
+            )
+            
+            callbacks = [early_stopping, reduce_lr]
+            
+            # Train and evaluate
+            history = train_model(model, train_data, val_data, batch_size, callbacks, class_weights)
+            val_accuracy = max(history.history['val_accuracy'])
+            
+            if val_accuracy > best_val_accuracy:
+                best_val_accuracy = val_accuracy
+                best_model = model
+                best_history = history
+                best_params = {
+                    'learning_rate': lr,
+                    'batch_size': batch_size,
+                    'dropout_rate': dropout_rate
+                }
+                print(f"\nNew best model found!")
+                print(f"Validation accuracy: {val_accuracy:.4f}")
+                print(f"Parameters: {best_params}")
+            
+            print(f"Best validation accuracy so far: {best_val_accuracy:.4f}")
+
+        print("\nHyperparameter search completed!")
+        print("\nBest hyperparameters found:")
+        print(f"Learning rate: {best_params['learning_rate']}")
+        print(f"Batch size: {best_params['batch_size']}")
+        print(f"Dropout rate: {best_params['dropout_rate']}")
+        
+        return best_model, best_history, test_metrics, results
+        
+    except Exception as e:
+        print(f"Error during hyperparameter search: {str(e)}")
+        traceback.print_exc()
+
+def create_stage_specific_model(dropout_rate=0.3, learning_rate=1e-4, metadata_input_shape=296):
+    # Image pathway
+    image_input = Input(shape=(224, 224, 3), name="image_input")
+    base_model = tf.keras.applications.EfficientNetB0(
+        include_top=False, weights="imagenet", input_tensor=image_input
+    )
+    
+    # Add attention mechanism for image features
+    x = base_model.output
+    attention = layers.Conv2D(1, 1)(x)
+    attention = layers.Activation('sigmoid')(attention)
+    x = layers.Multiply()([x, attention])
+    x = layers.GlobalAveragePooling2D()(x)
+    
+    # Enhanced image feature processing
+    x = layers.Dense(256, activation="relu")(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.Dropout(dropout_rate)(x)
+    x = layers.Dense(128, activation="relu")(x)
+    
+    # Metadata pathway with feature importance
+    meta_input = Input(shape=(metadata_input_shape,), name="meta_input")
+    meta_x = layers.Dense(256, activation="relu")(meta_input)
+    meta_x = layers.BatchNormalization()(meta_x)
+    meta_x = layers.Dropout(dropout_rate)(meta_x)
+    meta_x = layers.Dense(128, activation="relu")(meta_x)
+    
+    # Advanced feature fusion
+    combined = layers.concatenate([x, meta_x])
+    combined_x = layers.Dense(256, activation="relu")(combined)
+    combined_x = layers.BatchNormalization()(combined_x)
+    combined_x = layers.Dropout(dropout_rate)(combined_x)
+    
+    # Multi-head output for better stage discrimination
+    shared = layers.Dense(128, activation="relu")(combined_x)
+    
+    # Stage-specific outputs
+    output = layers.Dense(3, activation="softmax", name="stage_output")(shared)
+    
+    model = Model(inputs=[image_input, meta_input], outputs=output)
+    
+    # Add class weights to handle imbalance
+    model.compile(
+        optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate),
+        loss="categorical_crossentropy",
+        metrics=[
+            "accuracy",
+            tf.keras.metrics.Precision(name='precision'),
+            tf.keras.metrics.Recall(name='recall'),
+            tf.keras.metrics.AUC(name='auc'),
+            tf.keras.metrics.F1Score(name='f1')
+        ]
+    )
+    
+    return model
+
 if __name__ == "__main__":
     # Add some basic testing code
     print("Testing model module...")
-    test_model = create_model(dropout_rate=0.5, metadata_input_shape=10)
+    test_model = create_model(
+        dropout_rate=0.5,
+        learning_rate=1e-3,
+        metadata_input_shape=10
+    )
     print("Model created successfully!")
     print(f"Model input shapes: {[input.shape for input in test_model.inputs]}")
     print(f"Model output shape: {test_model.outputs[0].shape}") 

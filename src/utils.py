@@ -75,7 +75,7 @@ class NumpyEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 def create_experiment_folder(base_folder):
-    """Create a timestamped experiment folder"""
+    """Create a new experiment folder with a timestamp"""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     experiment_folder = os.path.join(base_folder, f"experiment_{timestamp}")
     os.makedirs(experiment_folder, exist_ok=True)

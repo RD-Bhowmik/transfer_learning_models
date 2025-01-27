@@ -1,0 +1,39 @@
+{
+    "overall_improvement": {
+        "val_accuracies": [
+            0.9626865386962891
+        ],
+        "val_losses": [
+            0.11352112889289856
+        ],
+        "training_times": [
+            189.4265148639679
+        ],
+        "initial_accuracy": 0.9626865386962891,
+        "final_accuracy": 0.9626865386962891,
+        "total_iterations": 1
+    },
+    "best_performance": {
+        "best_accuracy": 0.9626865386962891,
+        "best_iteration": 0,
+        "corresponding_hyperparameters": {
+            "learning_rate": 0.001,
+            "batch_size": 16,
+            "dropout_rate": 0.2
+        }
+    },
+    "metrics_summary": {
+        "precision": {
+            "max": 0.9460431933403015,
+            "mean": 0.9460431933403015
+        },
+        "recall": {
+            "max": 0.9235880374908447,
+            "mean": 0.9235880374908447
+        },
+        "auc": {
+            "max": 0.982211709022522,
+            "mean": 0.982211709022522
+        }
+    }
+}

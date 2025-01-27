@@ -1,0 +1,134 @@
+Metadata Summary
+==================================================
+
+Dataset Statistics:
+Total samples: 896
+Total features: 19
+
+Categorical Variables:
+
+HPV:
+HPV
+negative    466
+positive    430
+Missing values: 0
+
+Adequacy:
+Adequacy
+Adequate    896
+Missing values: 0
+
+Squamocolumnar junction visibility:
+Squamocolumnar junction visibility
+Completely visible    667
+Not visible           172
+Partially visible      57
+Missing values: 0
+
+Transformation zone:
+Transformation zone
+Type 1    498
+Type 3    230
+Type 2    168
+Missing values: 0
+
+Original squamous epithelium:
+Original squamous epithelium
+Mature      814
+Atrophic     82
+Missing values: 0
+
+Columnar epithelium:
+Columnar epithelium
+Ectopy absent     789
+Ectopy present    104
+2                   3
+Missing values: 0
+
+Metaplastic squamous epithelium:
+Metaplastic squamous epithelium
+Crypt (gland) openings                        809
+Nabothian cysts                                58
+Nabothian cysts and Crypt (gland) openings     25
+0                                               4
+Missing values: 0
+
+Location of the lesion:
+Location of the lesion
+Inside the T-zone                773
+Inside and outside the T-zone    101
+Outside the T-zone                17
+On polyp                           5
+Missing values: 0
+
+Grade 1:
+Grade 1
+Thin acetowhite epithelium    881
+Fine punctation                 9
+Irregular border                6
+Missing values: 0
+
+Grade 2:
+Grade 2
+Dense acetowhite epithelium    872
+Sharp border                    12
+Coarse mosaic                    7
+Coarse punctation                5
+Missing values: 0
+
+Suspicious for invasion:
+Suspicious for invasion
+Atypical vessels     870
+Irregular surface     26
+Missing values: 0
+
+Aceto uptake:
+Aceto uptake
+Nil or transparent    373
+Distinct, stearin     360
+Thin, milky           163
+Missing values: 0
+
+Margins:
+Margins
+Nil or diffuse                             382
+Sharp and even, difference in level        381
+Sharp but irregular, jagged, satellites    133
+Missing values: 0
+
+Vessels:
+Vessels
+Absent                        457
+Fine, regular                 236
+Coarse or atypical vessels    203
+Missing values: 0
+
+Lesion size:
+Lesion size
+< 5 mm                                                367
+>15 mm, 3-4 quadrants, or endocervically undefined    338
+5-15 mm or 2 quadrants                                191
+Missing values: 0
+
+Iodine uptake:
+Iodine uptake
+Faintly or patchy yellow    328
+Distinctly yellow           250
+Unknown                     179
+Brown                       139
+Missing values: 0
+
+0:
+Series([], )
+Missing values: 896
+
+Numerical Variables:
+            Label  SwedeFinal
+count  896.000000  896.000000
+mean     0.479911   25.684152
+std      0.499875   39.324713
+min      0.000000    0.000000
+25%      0.000000    2.000000
+50%      0.000000    6.500000
+75%      1.000000   10.000000
+max      1.000000   99.000000
