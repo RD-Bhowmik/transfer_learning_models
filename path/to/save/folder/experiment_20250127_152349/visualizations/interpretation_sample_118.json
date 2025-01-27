@@ -1,0 +1,29 @@
+{
+    "sample_id": 118,
+    "feature_importance": {
+        "Adequacy": 0.0,
+        "Squamocolumnar junction visibility": 7.567217107862234e-05,
+        "Transformation zone": 0.0013251887867227197,
+        "Original squamous epithelium": 0.0003091534599661827,
+        "Columnar epithelium": 0.0032066688872873783,
+        "Metaplastic squamous epithelium": 0.00010007480159401894,
+        "Location of the lesion": 0.00016389577649533749,
+        "Grade 1": 0.00012611760757863522,
+        "Grade 2": 2.1742423996329308e-05,
+        "Suspicious for invasion": 8.754560258239508e-05,
+        "Aceto uptake": 1.2335716746747494e-05,
+        "Margins": 0.0011834903853014112,
+        "Vessels": 0.0033959769643843174,
+        "Lesion size": 5.4829055443406105e-05,
+        "Iodine uptake": 0.00039068469777703285,
+        "SwedeFinal": 0.0004817394074052572
+    },
+    "uncertainty": {
+        "mean_prediction": 0.006842512107687071,
+        "uncertainty": 0.008254646607224523,
+        "confidence_interval": [
+            -0.009666781106761975,
+            0.02335180532213612
+        ]
+    }
+}

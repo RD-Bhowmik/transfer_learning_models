@@ -145,6 +145,63 @@ class CervicalCancerModel:
         
         return outputs
 
+    def _cross_attention(self, image_features, clinical_features):
+        """Implement cross-attention between image and clinical features"""
+        # Project clinical features to match image feature dimensions
+        clinical_projection = layers.Dense(image_features.shape[-1])(clinical_features)
+        clinical_projection = layers.Reshape((1, 1, -1))(clinical_projection)
+        clinical_projection = layers.UpSampling2D(
+            size=(image_features.shape[1], image_features.shape[2])
+        )(clinical_projection)
+        
+        # Calculate attention weights
+        attention = layers.Multiply()([image_features, clinical_projection])
+        attention = layers.Conv2D(1, 1, activation='sigmoid')(attention)
+        
+        # Apply attention to image features
+        attended_features = layers.Multiply()([image_features, attention])
+        
+        return attended_features
+
+    def _gated_fusion(self, image_features, clinical_features):
+        """Implement gated fusion of image and clinical features"""
+        # Create gates for both modalities
+        image_gate = layers.Dense(image_features.shape[-1], activation='sigmoid')(clinical_features)
+        clinical_gate = layers.Dense(clinical_features.shape[-1], activation='sigmoid')(
+            layers.GlobalAveragePooling2D()(image_features)
+        )
+        
+        # Apply gates
+        gated_image = layers.Multiply()([image_features, image_gate])
+        gated_clinical = layers.Multiply()([clinical_features, clinical_gate])
+        
+        # Combine features
+        fused_features = layers.Concatenate()([
+            layers.GlobalAveragePooling2D()(gated_image),
+            gated_clinical
+        ])
+        
+        return fused_features
+
+    def build_multi_task_heads(self, features):
+        """Build multiple task-specific heads"""
+        # Cancer classification head
+        cancer_pred = layers.Dense(256, activation='relu')(features)
+        cancer_pred = layers.Dropout(0.3)(cancer_pred)
+        cancer_pred = layers.Dense(1, activation='sigmoid', name='cancer_prediction')(cancer_pred)
+        
+        # Lesion type classification
+        lesion_type = layers.Dense(128, activation='relu')(features)
+        lesion_type = layers.Dropout(0.3)(lesion_type)
+        lesion_type = layers.Dense(4, activation='softmax', name='lesion_type')(lesion_type)
+        
+        # Severity score regression
+        severity_score = layers.Dense(128, activation='relu')(features)
+        severity_score = layers.Dropout(0.3)(severity_score)
+        severity_score = layers.Dense(1, activation='linear', name='severity_score')(severity_score)
+        
+        return [cancer_pred, lesion_type, severity_score]
+
 def create_model(dropout_rate, learning_rate, image_input_shape=(224, 224, 3), metadata_input_shape=None):
     """Create hybrid model combining image and clinical features
     

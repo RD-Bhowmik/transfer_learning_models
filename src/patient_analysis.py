@@ -71,3 +71,92 @@ class PatientAnalyzer:
             })
             
         return similar_cases 
+
+    def analyze_risk_factors(self, patient_data):
+        """Analyze patient-specific risk factors"""
+        risk_factors = {
+            'genetic_factors': self._analyze_genetic_risk(patient_data),
+            'environmental_factors': self._analyze_environmental_risk(patient_data),
+            'medical_history': self._analyze_medical_history(patient_data),
+            'lifestyle_factors': self._analyze_lifestyle_factors(patient_data)
+        }
+        
+        # Calculate overall risk score
+        risk_score = self._calculate_risk_score(risk_factors)
+        return {**risk_factors, 'overall_risk_score': risk_score}
+    
+    def _analyze_genetic_risk(self, patient_data):
+        """Analyze genetic risk factors"""
+        genetic_risk = 0.0
+        risk_factors = []
+        
+        if 'family_history' in patient_data:
+            if patient_data['family_history']:
+                genetic_risk += 0.3
+                risk_factors.append('family_history_positive')
+                
+        return {
+            'risk_level': genetic_risk,
+            'identified_factors': risk_factors
+        }
+    
+    def _analyze_environmental_risk(self, patient_data):
+        """Analyze environmental risk factors"""
+        env_risk = 0.0
+        risk_factors = []
+        
+        # Add environmental risk analysis
+        if 'smoking' in patient_data and patient_data['smoking']:
+            env_risk += 0.2
+            risk_factors.append('smoking')
+            
+        return {
+            'risk_level': env_risk,
+            'identified_factors': risk_factors
+        }
+    
+    def generate_longitudinal_analysis(self, patient_history):
+        """Generate longitudinal analysis of patient data"""
+        try:
+            # Sort history by date
+            sorted_history = sorted(patient_history, key=lambda x: x['date'])
+            
+            # Analyze disease progression
+            progression = self._analyze_disease_progression(sorted_history)
+            
+            # Analyze treatment effectiveness
+            treatment_response = self._analyze_treatment_response(sorted_history)
+            
+            # Predict risk trajectory
+            risk_trajectory = self._predict_risk_trajectory(sorted_history)
+            
+            return {
+                'progression_analysis': progression,
+                'treatment_response': treatment_response,
+                'risk_trajectory': risk_trajectory,
+                'recommendations': self._generate_recommendations(
+                    progression, treatment_response, risk_trajectory
+                )
+            }
+            
+        except Exception as e:
+            print(f"Error in longitudinal analysis: {str(e)}")
+            return None
+    
+    def _analyze_disease_progression(self, history):
+        """Analyze disease progression over time"""
+        progression_rates = []
+        for i in range(1, len(history)):
+            current = history[i]
+            previous = history[i-1]
+            
+            # Calculate progression rate
+            time_diff = (current['date'] - previous['date']).days
+            severity_diff = current['severity'] - previous['severity']
+            progression_rates.append(severity_diff / time_diff if time_diff > 0 else 0)
+        
+        return {
+            'avg_progression_rate': float(np.mean(progression_rates)) if progression_rates else 0,
+            'progression_trend': 'increasing' if np.mean(progression_rates) > 0 else 'stable',
+            'progression_rates': progression_rates
+        } 

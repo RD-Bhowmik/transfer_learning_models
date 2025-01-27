@@ -13,6 +13,7 @@ import traceback  # Add this import at the top
 import tensorflow as tf
 import albumentations as A
 import cv2
+import math
 
 # Add parent directory to Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -350,10 +351,10 @@ def prepare_data_splits(all_images_aligned, all_labels_aligned, metadata_feature
 def create_medical_augmentation_pipeline():
     """Create an augmentation pipeline specific for colposcopy images"""
     return A.Compose([
-        # Preserve tissue context and natural colors
+        # Color adjustments (preserve medical features)
         A.OneOf([
             A.RandomBrightnessContrast(
-                brightness_limit=0.1,  # Reduced from default for medical relevance
+                brightness_limit=0.1,
                 contrast_limit=0.1,
                 p=0.5
             ),
@@ -366,13 +367,15 @@ def create_medical_augmentation_pipeline():
             ),
         ], p=0.7),
         
-        # Medical-relevant spatial transformations
+        # Medical-specific transformations
         A.OneOf([
-            A.Rotate(
-                limit=15,  # Limited rotation for realistic viewing angles
-                border_mode=cv2.BORDER_CONSTANT,
-                p=0.5
-            ),
+            A.CLAHE(clip_limit=2.0, p=0.5),  # Enhance local contrast
+            A.Sharpen(alpha=(0.2, 0.5), p=0.5),  # Enhance edges
+            A.GaussianBlur(blur_limit=(3, 5), p=0.3),  # Simulate focus variation
+        ], p=0.5),
+        
+        # Lesion-preserving spatial transformations
+        A.OneOf([
             A.ShiftScaleRotate(
                 shift_limit=0.0625,
                 scale_limit=0.1,
@@ -380,48 +383,77 @@ def create_medical_augmentation_pipeline():
                 border_mode=cv2.BORDER_CONSTANT,
                 p=0.5
             ),
+            A.Affine(
+                scale=(0.95, 1.05),
+                translate_percent={"x": (-0.05, 0.05), "y": (-0.05, 0.05)},
+                rotate=(-15, 15),
+                p=0.5
+            ),
         ], p=0.7),
         
-        # Maintain tissue context - fix always_apply
+        # Quality simulation
         A.OneOf([
-            A.RandomCrop(
-                height=224,
-                width=224,
-                p=1.0  # Changed from always_apply
-            ),
-            A.CenterCrop(
-                height=224,
-                width=224,
-                p=1.0  # Changed from always_apply
-            ),
-        ], p=1.0),
-        
-        # Realistic lighting variations
-        A.OneOf([
-            A.RandomGamma(
-                gamma_limit=(80, 120),  # Subtle gamma changes
-                p=0.5
-            ),
-            A.CLAHE(  # Contrast Limited Adaptive Histogram Equalization
-                clip_limit=2.0,
-                tile_grid_size=(8, 8),
-                p=0.5
-            ),
-        ], p=0.5),
-        
-        # Fix GaussNoise parameters
-        A.OneOf([
-            A.GaussNoise(
-                var_limit=(10, 50),  # Fixed parameter name
-                mean=0,
-                p=0.3
-            ),
-            A.MedianBlur(
-                blur_limit=3,
-                p=0.3
-            ),
+            A.ImageCompression(quality_lower=85, quality_upper=100, p=0.5),
+            A.GaussNoise(var_limit=(10, 30), p=0.5),
         ], p=0.3),
     ])
+
+def validate_image_quality(image):
+    """Validate image quality before processing"""
+    try:
+        quality_metrics = {
+            'resolution': {
+                'width': image.shape[1],
+                'height': image.shape[0],
+                'adequate': min(image.shape[:2]) >= 224
+            },
+            'contrast': {
+                'value': measure_image_contrast(image),
+                'adequate': measure_image_contrast(image) > 0.4
+            },
+            'noise_level': {
+                'value': estimate_noise_level(image),
+                'acceptable': estimate_noise_level(image) < 0.1
+            },
+            'blur_detection': {
+                'value': detect_blur_level(image),
+                'is_sharp': detect_blur_level(image) < 100
+            }
+        }
+        
+        return quality_metrics
+        
+    except Exception as e:
+        print(f"Error in image quality validation: {str(e)}")
+        return None
+
+def measure_image_contrast(image):
+    """Measure image contrast"""
+    if len(image.shape) == 3:
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+    return float(np.std(image.astype(float)))
+
+def estimate_noise_level(image):
+    """Estimate image noise level"""
+    if len(image.shape) == 3:
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+    
+    H, W = image.shape
+    M = [[1, -2, 1],
+         [-2, 4, -2],
+         [1, -2, 1]]
+    
+    sigma = np.sum(np.sum(np.absolute(cv2.filter2D(image, -1, np.array(M)))))
+    sigma = sigma * math.sqrt(0.5 * math.pi) / (6 * (W-2) * (H-2))
+    
+    return float(sigma)
+
+def detect_blur_level(image):
+    """Detect image blur level using Laplacian variance"""
+    if len(image.shape) == 3:
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+    
+    return cv2.Laplacian(image, cv2.CV_64F).var()
 
 def augment_medical_image(image, augmentation):
     """Apply medical-specific augmentation to an image"""

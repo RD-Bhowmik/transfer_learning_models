@@ -5,6 +5,7 @@ import os
 import logging
 from collections import deque
 import traceback
+from scipy import stats
 
 class SafetyMonitor:
     """Monitor model safety and trigger alerts"""
@@ -175,4 +176,79 @@ class SafetyMonitor:
             'critical_alerts': sum(1 for a in self.alert_history if a['level'] == 'CRITICAL'),
             'warning_alerts': sum(1 for a in self.alert_history if a['level'] == 'WARNING'),
             'recent_alerts': list(self.alert_history)[-10:]  # Last 10 alerts
+        }
+
+    def _analyze_prediction_trends(self, predictions_history):
+        """Analyze trends in predictions over time"""
+        predictions_array = np.array(predictions_history)
+        
+        return {
+            'mean_trend': float(np.mean(predictions_array)),
+            'std_trend': float(np.std(predictions_array)),
+            'trend_direction': 'increasing' if len(predictions_array) > 1 and 
+                              predictions_array[-1] > predictions_array[0] else 'decreasing',
+            'volatility': float(np.std(np.diff(predictions_array))) if len(predictions_array) > 1 else 0.0
+        }
+
+    def _assess_prediction_stability(self, predictions_history):
+        """Assess stability of predictions"""
+        if len(predictions_history) < 2:
+            return {'stability_score': 1.0}
+        
+        differences = np.diff(predictions_history)
+        stability_score = 1.0 / (1.0 + np.std(differences))
+        
+        return {
+            'stability_score': float(stability_score),
+            'max_change': float(np.max(np.abs(differences))),
+            'change_frequency': float(np.mean(np.abs(differences) > 0.1))
+        }
+
+    def _detect_model_drift(self, predictions_history):
+        """Detect potential model drift"""
+        if len(predictions_history) < 10:
+            return {'drift_detected': False}
+        
+        # Split history into two halves
+        mid_point = len(predictions_history) // 2
+        first_half = predictions_history[:mid_point]
+        second_half = predictions_history[mid_point:]
+        
+        # Compare distributions
+        stat, p_value = stats.ks_2samp(first_half, second_half)
+        
+        return {
+            'drift_detected': p_value < 0.05,
+            'drift_statistic': float(stat),
+            'p_value': float(p_value)
+        }
+
+    def _check_high_risk_conditions(self, prediction, patient_data):
+        """Check for high-risk conditions"""
+        risk_factors = []
+        
+        # Check prediction threshold
+        if prediction > 0.7:
+            risk_factors.append('high_prediction_score')
+        
+        # Check clinical factors if available
+        if patient_data is not None:
+            if 'age' in patient_data and patient_data['age'] > 50:
+                risk_factors.append('age_risk')
+            if 'family_history' in patient_data and patient_data['family_history']:
+                risk_factors.append('family_history_risk')
+            
+        return len(risk_factors) > 0, risk_factors
+
+    def _generate_critical_alert(self, risk_factors=None):
+        """Generate a critical alert with detailed information"""
+        return {
+            'level': 'CRITICAL',
+            'timestamp': datetime.now().isoformat(),
+            'risk_factors': risk_factors or [],
+            'recommended_actions': [
+                'Immediate clinical review required',
+                'Schedule follow-up examination',
+                'Review patient history'
+            ]
         } 

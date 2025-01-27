@@ -604,6 +604,85 @@ def visualize_clinical_patterns(metadata, viz_folder):
     plt.tight_layout()
     save_plot(fig, os.path.join(viz_folder, "clinical_analysis"), "clinical_patterns")
 
+def visualize_lesion_detection(image, detected_lesions, save_path=None):
+    """Enhanced visualization of detected lesions"""
+    plt.figure(figsize=(15, 10))
+    
+    # Original image with lesion boundaries
+    plt.subplot(2, 2, 1)
+    plt.imshow(image)
+    for lesion in detected_lesions:
+        bbox = lesion['bbox']
+        plt.gca().add_patch(plt.Rectangle(
+            (bbox[0], bbox[1]), bbox[2], bbox[3],
+            fill=False, color='red', linewidth=2
+        ))
+    plt.title('Detected Lesions')
+    
+    # Lesion heatmap
+    plt.subplot(2, 2, 2)
+    heatmap = np.zeros_like(image[:,:,0])
+    for lesion in detected_lesions:
+        x, y, w, h = lesion['bbox']
+        heatmap[y:y+h, x:x+w] += lesion.get('confidence', 1.0)
+    plt.imshow(image)
+    plt.imshow(heatmap, alpha=0.5, cmap='hot')
+    plt.title('Lesion Heatmap')
+    
+    # Lesion characteristics
+    plt.subplot(2, 2, 3)
+    characteristics = [lesion.get('characteristics', {}) for lesion in detected_lesions]
+    if characteristics:
+        df = pd.DataFrame(characteristics)
+        sns.barplot(data=df.mean().reset_index(), x='index', y=0)
+        plt.xticks(rotation=45)
+        plt.title('Average Lesion Characteristics')
+    
+    if save_path:
+        plt.savefig(save_path)
+        plt.close()
+    else:
+        plt.show()
+
+def create_clinical_dashboard(patient_data, predictions, uncertainties, save_path=None):
+    """Create comprehensive clinical dashboard"""
+    fig = plt.figure(figsize=(20, 15))
+    
+    # Risk assessment
+    plt.subplot(2, 2, 1)
+    plt.plot(predictions, 'b-', label='Risk Score')
+    plt.fill_between(
+        range(len(predictions)),
+        np.array(predictions) - np.array(uncertainties),
+        np.array(predictions) + np.array(uncertainties),
+        alpha=0.3, color='b'
+    )
+    plt.axhline(y=0.5, color='r', linestyle='--', label='Risk Threshold')
+    plt.title('Risk Assessment Over Time')
+    plt.legend()
+    
+    # Patient history timeline
+    if 'history' in patient_data:
+        plt.subplot(2, 2, 2)
+        history = patient_data['history']
+        plt.plot(history['dates'], history['values'], 'go-')
+        plt.title('Patient History')
+        plt.xticks(rotation=45)
+    
+    # Decision support
+    plt.subplot(2, 2, 3)
+    decision_matrix = np.zeros((len(predictions), 2))
+    decision_matrix[:, 0] = predictions
+    decision_matrix[:, 1] = uncertainties
+    sns.heatmap(decision_matrix.T, cmap='YlOrRd')
+    plt.title('Decision Support Matrix')
+    
+    if save_path:
+        plt.savefig(save_path)
+        plt.close()
+    else:
+        plt.show()
+
 if __name__ == "__main__":
     print("Testing visualization module...")
     # Create a test visualization
