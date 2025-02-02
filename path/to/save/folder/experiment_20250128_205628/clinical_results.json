@@ -1,0 +1,120 @@
+{
+    "clinical_metrics": {
+        "diagnostic_metrics": {
+            "sensitivity": 0.9692307692307692,
+            "specificity": 1.0,
+            "ppv": 1.0,
+            "npv": 0.9722222222222222,
+            "plr": Infinity,
+            "nlr": 0.03076923076923077,
+            "accuracy": 0.9851851851851852,
+            "f1_score": 0.984375
+        },
+        "risk_metrics": {
+            "risk_ratio": 26.469970703125,
+            "odds_ratio": Infinity,
+            "confidence_intervals": {
+                "level": 0.95,
+                "lower": 25.540057394734234,
+                "upper": 27.399884011515766
+            }
+        },
+        "clinical_thresholds": {
+            "optimal_threshold": 0.2680816352367401,
+            "screening_threshold": 0.5427376627922058,
+            "confirmation_threshold": 0.16475385427474976
+        },
+        "uncertainty_metrics": {
+            "mean_confidence": 0.9408960938453674,
+            "confidence_std": 0.12894123792648315,
+            "mean_entropy": 0.1348007172346115,
+            "high_uncertainty_ratio": 0.022222222222222223
+        }
+    },
+    "validation_results": {
+        "safety_metrics": {
+            "false_negative_rate": 0.2710562414266118,
+            "missed_diagnosis_risk": 0.03076923076923077,
+            "safety_threshold_compliance": 0.43703703703703706
+        },
+        "subgroup_analysis": {},
+        "error_analysis": {
+            "false_positives": {
+                "count": 0,
+                "mean_confidence": 0.0,
+                "indices": []
+            },
+            "false_negatives": {
+                "count": 2,
+                "mean_confidence": 0.7962380051612854,
+                "indices": [
+                    40,
+                    128
+                ]
+            },
+            "error_rate": 0.014814814814814815,
+            "threshold_analysis": {
+                "threshold_0.1": {
+                    "false_positives": 7,
+                    "false_negatives": 0,
+                    "total_errors": 7
+                },
+                "threshold_0.2": {
+                    "false_positives": 2,
+                    "false_negatives": 1,
+                    "total_errors": 3
+                },
+                "threshold_0.3": {
+                    "false_positives": 1,
+                    "false_negatives": 2,
+                    "total_errors": 3
+                },
+                "threshold_0.4": {
+                    "false_positives": 0,
+                    "false_negatives": 2,
+                    "total_errors": 2
+                },
+                "threshold_0.5": {
+                    "false_positives": 0,
+                    "false_negatives": 2,
+                    "total_errors": 2
+                },
+                "threshold_0.6": {
+                    "false_positives": 0,
+                    "false_negatives": 3,
+                    "total_errors": 3
+                },
+                "threshold_0.7": {
+                    "false_positives": 0,
+                    "false_negatives": 3,
+                    "total_errors": 3
+                },
+                "threshold_0.8": {
+                    "false_positives": 0,
+                    "false_negatives": 3,
+                    "total_errors": 3
+                },
+                "threshold_0.9": {
+                    "false_positives": 0,
+                    "false_negatives": 4,
+                    "total_errors": 4
+                }
+            }
+        },
+        "validation_status": {
+            "status": "FAILED",
+            "criteria_results": {
+                "false_negative_rate": false,
+                "missed_diagnosis_risk": false,
+                "safety_compliance": false
+            }
+        }
+    },
+    "safety_alerts": [],
+    "batch_statistics": {
+        "mean_prediction": 0.48074039816856384,
+        "mean_uncertainty": 0.0071434401734553465,
+        "high_uncertainty_rate": 0.0,
+        "high_risk_rate": 0.45925925925925926
+    }
+}

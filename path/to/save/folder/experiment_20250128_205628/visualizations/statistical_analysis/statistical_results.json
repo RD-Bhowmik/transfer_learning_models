@@ -1,0 +1,362 @@
+{
+    "chi_square_tests": {
+        "Adequacy": {
+            "chi2": 0.0,
+            "p_value": 1.0
+        },
+        "Squamocolumnar junction visibility": {
+            "chi2": 167.5176120837107,
+            "p_value": 4.207389562322606e-37
+        },
+        "Transformation zone": {
+            "chi2": 285.40068906618893,
+            "p_value": 1.0617635292499069e-62
+        },
+        "Original squamous epithelium": {
+            "chi2": 15.813353413197618,
+            "p_value": 6.990739251412563e-05
+        },
+        "Columnar epithelium": {
+            "chi2": 56.42905699605575,
+            "p_value": 5.579380288933267e-13
+        },
+        "Metaplastic squamous epithelium": {
+            "chi2": 10.176775476120117,
+            "p_value": 0.01712172924675541
+        },
+        "Location of the lesion": {
+            "chi2": 8.331740948961944,
+            "p_value": 0.039630797143877704
+        },
+        "Grade 1": {
+            "chi2": 14.076863493981188,
+            "p_value": 0.0008775016283200466
+        },
+        "Grade 2": {
+            "chi2": 24.078680598605764,
+            "p_value": 2.4052746174372354e-05
+        },
+        "Suspicious for invasion": {
+            "chi2": 26.912489767231833,
+            "p_value": 2.128787472403818e-07
+        },
+        "Aceto uptake": {
+            "chi2": 570.7933819553601,
+            "p_value": 1.1318580264460643e-124
+        },
+        "Margins": {
+            "chi2": 514.7194105223707,
+            "p_value": 1.6986352833187366e-112
+        },
+        "Vessels": {
+            "chi2": 357.58500514415925,
+            "p_value": 2.2459636715575675e-78
+        },
+        "Lesion size": {
+            "chi2": 315.3933024155516,
+            "p_value": 3.2599772238767997e-69
+        },
+        "Iodine uptake": {
+            "chi2": 431.2336821959804,
+            "p_value": 3.7939859871716657e-93
+        },
+        "SwedeFinal": {
+            "chi2": 495.2513489325534,
+            "p_value": 3.3013518817970694e-99
+        }
+    },
+    "correlations": {
+        "Adequacy": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Squamocolumnar junction visibility": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Transformation zone": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Original squamous epithelium": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Columnar epithelium": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Metaplastic squamous epithelium": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Location of the lesion": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Grade 1": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Grade 2": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Suspicious for invasion": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Aceto uptake": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Margins": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Vessels": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Lesion size": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "Iodine uptake": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": NaN
+        },
+        "SwedeFinal": {
+            "Adequacy": NaN,
+            "Squamocolumnar junction visibility": NaN,
+            "Transformation zone": NaN,
+            "Original squamous epithelium": NaN,
+            "Columnar epithelium": NaN,
+            "Metaplastic squamous epithelium": NaN,
+            "Location of the lesion": NaN,
+            "Grade 1": NaN,
+            "Grade 2": NaN,
+            "Suspicious for invasion": NaN,
+            "Aceto uptake": NaN,
+            "Margins": NaN,
+            "Vessels": NaN,
+            "Lesion size": NaN,
+            "Iodine uptake": NaN,
+            "SwedeFinal": 1.0
+        }
+    },
+    "vif_factors": {
+        "Columnar epithelium": 1.427055477068205,
+        "SwedeFinal": 0.9999999999999998
+    }
+}

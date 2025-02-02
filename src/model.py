@@ -25,7 +25,7 @@ class CervicalCancerModel:
         # Clinical pathway
         if self.n_clinical_features:
             clinical_input = layers.Input(shape=(self.n_clinical_features,), 
-                                       name='clinical_input')
+                                        name='clinical_input')
             clinical_features = self._build_clinical_pathway(clinical_input)
             
             # Combine pathways

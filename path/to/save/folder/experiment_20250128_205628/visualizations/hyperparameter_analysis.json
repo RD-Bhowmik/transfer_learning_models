@@ -1,0 +1,12 @@
+{
+    "learning_rate_effect": {
+        "0.001": 0.9626865386962891
+    },
+    "batch_size_effect": {
+        "16": 0.9626865386962891
+    },
+    "dropout_effect": {
+        "0.2": 0.9626865386962891
+    },
+    "training_time_correlation": NaN
+}

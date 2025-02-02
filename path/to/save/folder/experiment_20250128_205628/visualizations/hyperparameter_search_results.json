@@ -1,0 +1,52 @@
+{
+    "best_parameters": {
+        "learning_rate": 0.001,
+        "batch_size": 16,
+        "dropout_rate": 0.2
+    },
+    "best_accuracy": 0.9626865386962891,
+    "parameter_search": {
+        "learning_rates_tested": [
+            0.001
+        ],
+        "batch_sizes_tested": [
+            16
+        ],
+        "dropout_rates_tested": [
+            0.2
+        ],
+        "total_combinations": 1,
+        "tracking_metrics": {
+            "learning_rates": [
+                0.001
+            ],
+            "batch_sizes": [
+                16
+            ],
+            "dropout_rates": [
+                0.2
+            ],
+            "val_accuracies": [
+                0.9626865386962891
+            ],
+            "val_losses": [
+                0.12066628783941269
+            ],
+            "training_times": [
+                460.5623073577881
+            ],
+            "epochs_trained": [
+                10
+            ],
+            "precision": [
+                0.9551724195480347
+            ],
+            "recall": [
+                0.920265793800354
+            ],
+            "auc": [
+                0.9785582423210144
+            ]
+        }
+    }
+}
